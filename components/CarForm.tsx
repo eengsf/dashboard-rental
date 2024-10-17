@@ -115,7 +115,9 @@ const CarForm = ({ id, cars }: { id: string; cars: ProductCar[] }) => {
               disabled={loading}
               className="py-2 px-5 rounded-lg bg-custom-main2 hover:bg-custom-main3 text-custom-main4 text-xs"
             >
-              {loading ? 'Saving...' : 'Edit Car'}
+              <span className="whitespace-nowrap">
+                {loading ? 'Saving...' : 'Edit Car'}
+              </span>
             </button>
           </div>
           <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
@@ -317,6 +319,7 @@ const CarForm = ({ id, cars }: { id: string; cars: ProductCar[] }) => {
                       alt="car"
                       width={500}
                       height={500}
+                      priority
                       className="object-cover w-auto h-auto "
                     />
                     <button

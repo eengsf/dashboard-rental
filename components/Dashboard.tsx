@@ -5,7 +5,7 @@ import { RootState } from '@/store';
 import Overview from '@/components/MainDashboard/Overview';
 import CarList from '@/components/MainDashboard/CarList';
 import Customer from '@/components/MainDashboard/Customer';
-import Order from '@/components/MainDashboard/Order';
+import RentalList from '@/components/MainDashboard/RentalList';
 import Logout from '@/components/MainDashboard/Logout';
 import Setting from '@/components/MainDashboard/Setting';
 import { ProductCar } from '@/model/ProductCar';
@@ -32,8 +32,8 @@ function Dashboard({
         <CarList cars={cars} />
       ) : refMain.name === 'Customer' ? (
         <Customer users={users} />
-      ) : refMain.name === 'Order' ? (
-        <Order users={users} cars={cars} rentals={rentals} />
+      ) : refMain.name === 'Rental List' ? (
+        <RentalList users={users} cars={cars} rentals={rentals} />
       ) : refMain.name === 'Logout' ? (
         <Logout />
       ) : refMain.name === 'Setting' ? (

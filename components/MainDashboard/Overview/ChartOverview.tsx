@@ -1,79 +1,61 @@
-// 'use client';
-
-// import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
-
 // import {
-//   ChartConfig,
-//   ChartContainer,
-//   ChartTooltip,
-//   ChartTooltipContent,
-// } from '@/components/ui/chart';
+//   LineChart,
+//   Line,
+//   XAxis,
+//   YAxis,
+//   CartesianGrid,
+//   Tooltip,
+//   ResponsiveContainer,
+// } from 'recharts';
 
-// export const description = 'A multiple line chart';
-
-// const chartData = [
-//   { month: 'January', desktop: 186, mobile: 80 },
-//   { month: 'February', desktop: 305, mobile: 200 },
-//   { month: 'March', desktop: 237, mobile: 120 },
-//   { month: 'April', desktop: 73, mobile: 190 },
-//   { month: 'May', desktop: 209, mobile: 130 },
-//   { month: 'June', desktop: 214, mobile: 140 },
+// const data = [
+//   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
+//   { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
+//   { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
+//   { name: 'Page D', uv: 2780, pv: 3908, amt: 2000 },
+//   { name: 'Page E', uv: 1890, pv: 4800, amt: 2181 },
 // ];
 
-// const chartConfig = {
-//   desktop: {
-//     label: 'Desktop',
-//     color: 'hsl(var(--chart-1))',
-//   },
-//   mobile: {
-//     label: 'Mobile',
-//     color: 'hsl(var(--chart-2))',
-//   },
-// } satisfies ChartConfig;
+// // XAxis Component with default parameter and label
+// const XAxisCustom = ({ dataKey = 'name' }) => {
+//   return (
+//     <XAxis
+//       dataKey={dataKey}
+//       label={{ value: 'Pages', position: 'insideBottomRight', offset: -5 }} // Label for X axis
+//     />
+//   );
+// };
+
+// // eslint-disable-next-line @typescript-eslint/no-explicit-any
+// const YAxisCustom = (props: any) => {
+//   return (
+//     <YAxis
+//       {...props}
+//       label={{ value: 'UV & PV', angle: -90, position: 'insideLeft' }} // Label for Y axis
+//     />
+//   );
+// };
 
 // export default function ChartOverview() {
 //   return (
-//     <div className=" w-full h-full flex justify-center items-end">
-//       <ChartContainer config={chartConfig} className="w-full h-full pb-3">
+//     <div>
+//       <ResponsiveContainer width="100%" height={400}>
 //         <LineChart
-//           accessibilityLayer
-//           data={chartData}
-//           margin={{
-//             left: -20,
-//             right: 10,
-//           }}
+//           data={data}
+//           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
 //         >
-//           <CartesianGrid vertical={false} />
-//           <XAxis
-//             dataKey="month"
-//             tickLine={true}
-//             axisLine={true}
-//             tickMargin={8}
-//             tickFormatter={(value) => value.slice(0, 3)}
-//           />
-//           <YAxis tickLine={true} axisLine={true} tickMargin={8} tickCount={4} />
-//           <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-//           <Line
-//             dataKey="desktop"
-//             type="monotone"
-//             stroke="var(--color-desktop)"
-//             strokeWidth={2}
-//             dot={false}
-//           />
-//           <Line
-//             dataKey="mobile"
-//             type="monotone"
-//             stroke="var(--color-mobile)"
-//             strokeWidth={2}
-//             dot={false}
-//           />
+//           <CartesianGrid strokeDasharray="3 3" />
+//           <XAxisCustom />
+//           <YAxisCustom />
+//           <Tooltip />
+//           <Line type="monotone" dataKey="pv" stroke="#8884d8" />
+//           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
 //         </LineChart>
-//       </ChartContainer>
+//       </ResponsiveContainer>
 //     </div>
 //   );
 // }
 
-import React from 'react';
 import {
   LineChart,
   Line,
@@ -82,9 +64,14 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  TooltipProps,
 } from 'recharts';
+import {
+  NameType,
+  ValueType,
+} from 'recharts/types/component/DefaultTooltipContent';
 
-const data = [
+const data: { name: string; uv: number; pv: number; amt: number }[] = [
   { name: 'Page A', uv: 4000, pv: 2400, amt: 2400 },
   { name: 'Page B', uv: 3000, pv: 1398, amt: 2210 },
   { name: 'Page C', uv: 2000, pv: 9800, amt: 2290 },
@@ -93,26 +80,58 @@ const data = [
 ];
 
 // XAxis Component with default parameter and label
-const XAxisCustom = ({ dataKey = 'name' }) => {
+interface XAxisCustomProps {
+  dataKey?: string;
+}
+
+const XAxisCustom = ({ dataKey = 'name' }: XAxisCustomProps): JSX.Element => {
   return (
     <XAxis
       dataKey={dataKey}
-      label={{ value: 'Pages', position: 'insideBottomRight', offset: -5 }} // Label for X axis
+      label={{ value: 'Pages', position: 'insideBottomRight', offset: -5 }}
+      axisLine={true} // Enable axis line for X axis
+      tickLine={true} // Enable tick marks for X axis
     />
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const YAxisCustom = (props: any) => {
+// YAxis Component
+interface YAxisCustomProps {
+  domain?: [number, number];
+}
+
+const YAxisCustom = (props: YAxisCustomProps): JSX.Element => {
   return (
     <YAxis
       {...props}
-      label={{ value: 'UV & PV', angle: -90, position: 'insideLeft' }} // Label for Y axis
+      label={{ value: 'UV & PV', angle: -90, position: 'insideLeft' }}
+      axisLine={true} // Enable axis line for Y axis
+      tickLine={true} // Enable tick marks for Y axis
     />
   );
 };
 
-export default function ChartOverview() {
+// Custom Tooltip to show title from data.name
+const CustomTooltip = ({
+  active,
+  payload,
+  label,
+}: TooltipProps<ValueType, NameType>): JSX.Element | null => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip">
+        <p className="label">{`Title: ${label}`}</p>{' '}
+        {/* Title from data.name */}
+        <p className="intro">{`PV: ${payload[0].value}`}</p>
+        <p className="desc">{`UV: ${payload[1].value}`}</p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+export default function ChartOverview(): JSX.Element {
   return (
     <div>
       <ResponsiveContainer width="100%" height={400}>
@@ -123,7 +142,7 @@ export default function ChartOverview() {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxisCustom />
           <YAxisCustom />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} /> {/* Custom Tooltip */}
           <Line type="monotone" dataKey="pv" stroke="#8884d8" />
           <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
         </LineChart>

@@ -21,9 +21,6 @@ function Page() {
     setLoading(true);
     router.push('/dashboard');
   };
-  const handleGoogleLogin = async () => {
-    setLoading(true);
-  };
 
   return (
     <>
@@ -36,7 +33,7 @@ function Page() {
                 Welcome back
               </h2>
               <p className="text-xs text-custom-main2">
-                Please enter your details to login
+                Sementara waktu langsung login saja
               </p>
             </div>
           </div>
@@ -48,9 +45,9 @@ function Page() {
                 <Input
                   type="email"
                   placeholder="Enter your email"
-                  value={form.email}
+                  value={'admin@gmail.com'}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  disabled={loading}
+                  disabled
                 />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -58,11 +55,11 @@ function Page() {
                 <Input
                   type="password"
                   placeholder="Enter your password"
-                  value={form.password}
+                  value={'password123'}
                   onChange={(e) =>
                     setForm({ ...form, password: e.target.value })
                   }
-                  disabled={loading}
+                  disabled
                 />
                 <div className="flex justify-between">
                   <div className="flex items-center gap-1">
@@ -105,7 +102,6 @@ function Page() {
               variant={'secondary'}
               size={'lg'}
               className="flex gap-1 items-center"
-              onClick={handleGoogleLogin}
               disabled={loading}
             >
               <Image src="/google.png" alt="google" width={28} height={28} />

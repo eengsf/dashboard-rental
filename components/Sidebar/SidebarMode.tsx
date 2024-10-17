@@ -96,7 +96,7 @@ function SidebarMode() {
         />
         <ListSidebar
           icon={<BsBorderStyle size={20} />}
-          label="Order"
+          label="Rental List"
           active={active}
           setActive={setActive}
           dispatch={dispatch}

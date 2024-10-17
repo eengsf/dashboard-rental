@@ -131,7 +131,7 @@ function CarManagement() {
   };
 
   return (
-    <div className="w-full md:px-5 sm:px-3.5 px-0 overflow-y-auto">
+    <div className="w-full pb-10 md:px-5 sm:px-3.5 px-0 overflow-y-auto">
       <div className=" md:p-8 p-3.5 bg-custom-light shadow-lg xs:rounded-lg rounded-none">
         <form action="" onSubmit={handleSubmit} className="flex flex-col gap-5">
           <div className="flex items-center gap-5">
@@ -144,7 +144,9 @@ function CarManagement() {
               disabled={loading}
               className="py-2 px-5 rounded-lg bg-custom-main2 hover:bg-custom-main3 text-custom-main4 text-xs"
             >
-              {loading ? 'Saving...' : 'Add Car'}
+              <span className="whitespace-nowrap">
+                {loading ? 'Saving...' : 'Add Car'}
+              </span>
             </button>
           </div>
           <div className="grid lg:grid-cols-2 grid-cols-1 gap-5">
@@ -349,6 +351,7 @@ function CarManagement() {
                       alt="car"
                       width={500}
                       height={500}
+                      priority
                       className="object-cover w-auto h-auto"
                     />
                     <button

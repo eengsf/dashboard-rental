@@ -7,27 +7,45 @@ import ChartOverview from './Overview/ChartOverview';
 const summary = [
   {
     name: 'Total Revenue',
-    value: '$ 10,000',
+    value: '$4,572.89',
     persentase: '19.8%',
     icon: <BsCurrencyDollar size={18} />,
   },
   {
     name: 'Subscriptions',
-    value: '12',
+    value: '+125',
     persentase: '101.7%',
     icon: <FiUsers size={18} />,
   },
   {
     name: 'Order',
-    value: '7',
+    value: '+73',
     persentase: '25.5%',
     icon: <CiCreditCard1 size={18} />,
   },
   {
     name: 'Available',
-    value: '16',
+    value: '11',
     persentase: '3',
     icon: <IoCarSportOutline size={18} />,
+  },
+];
+const summary2 = [
+  {
+    name: 'Lorem Ipsum',
+    value: '5,528',
+  },
+  {
+    name: 'Dolor Sit Amet',
+    value: '3,725',
+  },
+  {
+    name: 'Consectetur Adipisicing',
+    value: '21m',
+  },
+  {
+    name: 'Sunt Sapiente',
+    value: '87%',
   },
 ];
 
@@ -62,7 +80,7 @@ function Overview() {
           <ChartOverview />
         </div>
         <div className="col-span-1 grid grid-cols-1 divide-y divide-custom-main3">
-          {summary.map((item, index) => (
+          {summary2.map((item, index) => (
             <div
               key={index}
               className="w-full flex flex-col gap-1 items-center justify-center p-3"
