@@ -8,7 +8,7 @@ const Hamburger = () => {
   return (
     <label
       htmlFor="burger"
-      className={`z-30 cursor-pointer md:hidden flex flex-col justify-center items-center h-7 w-7 p-px`}
+      className={`z-50 cursor-pointer md:hidden flex flex-col justify-center items-center h-7 w-7 p-px`}
     >
       <input
         type="checkbox"
