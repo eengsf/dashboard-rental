@@ -12,7 +12,7 @@ function Sidebar() {
         <SidebarMode />
       </div>
       <div
-        className={`w-56 h-screen md:hidden flex flex-col gap-3 bg-custom-main1 absolute transition-all duration-700 z-10 ${
+        className={`w-56 h-screen md:hidden flex flex-col gap-3 bg-custom-main1 absolute transition-all duration-700 z-50 ${
           burger ? 'translate-x-0 opacity-100' : '-translate-x-full opacity-0'
         }`}
       >
